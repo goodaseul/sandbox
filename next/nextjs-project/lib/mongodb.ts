@@ -26,6 +26,8 @@ if (!global.mongoose) {
  * Caches the connection to prevent multiple connections during development hot reloads.
  * @returns Promise resolving to the Mongoose instance
  */
+// → Next.js에서 MongoDB에 연결하는 함수(connectDB).
+
 async function connectDB(): Promise<typeof mongoose> {
     // Return existing connection if available
     if (cached.conn) {

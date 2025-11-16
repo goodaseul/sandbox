@@ -1,5 +1,6 @@
 import { Schema, model, models, Document } from "mongoose";
-
+// → MongoDB에 들어갈 Event 데이터의 “모양(스키마)”을 정함
+// 예: title, description, date 이런 필드들.
 // TypeScript interface for Event document
 export interface IEvent extends Document {
     title: string;
