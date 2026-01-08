@@ -1,13 +1,11 @@
 import { useState } from "react";
 import Button from "./html/Button";
 import Input from "./html/Input";
+import { useTodoAction } from "../context/todo/useTodo";
 
-export default function TodoEditor({
-  addTodo,
-}: {
-  addTodo: (text: string) => void;
-}) {
+export default function TodoEditor() {
   const [text, setText] = useState("");
+  const { addTodo } = useTodoAction();
   const handleTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };

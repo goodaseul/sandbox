@@ -3,19 +3,11 @@ import Button from "./html/Button";
 import Checkbox from "./html/Checkbox";
 import SvgClose from "./svg/SvgClose";
 import SvgPencil from "./svg/SvgPencil";
+import { useTodoAction } from "../context/todo/useTodo";
 
-export default React.memo(function TodoListItem({
-  todo,
-  deleteTodo,
-  toggleTodo,
-  modifyTodo,
-}: {
-  todo: Todo;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-  modifyTodo: (id: number, text: string) => void;
-}) {
-  console.log("TodoListItem");
+export default React.memo(function TodoListItem({ todo }: { todo: Todo }) {
+  const { toggleTodo, deleteTodo, modifyTodo } = useTodoAction();
+
   const [isModify, setIsModify] = useState(false);
   const [modifyText, setModifyText] = useState("");
   const handleModify = () => {
