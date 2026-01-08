@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import TodoEditor from "./TodoEditor";
 import TodoHeader from "./TodoHeader";
 import TodoList from "./TodoList";
@@ -11,23 +11,23 @@ export default function Todo() {
     setTodos((todos) => [...todos, { id: Date.now(), text, completed: false }]);
   };
 
-  const toggleTodo = (id: number) => {
+  const toggleTodo = useCallback((id: number) => {
     setTodos((todos) =>
       todos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
-  };
+  }, []);
 
-  const deleteTodo = (id: number) => {
+  const deleteTodo = useCallback((id: number) => {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
-  };
+  }, []);
 
-  const modifyTodo = (id: number, text: string) => {
+  const modifyTodo = useCallback((id: number, text: string) => {
     setTodos((todos) =>
       todos.map((todo) => (todo.id === id ? { ...todo, text } : todo))
     );
-  };
+  }, []);
 
   useEffect(() => {
     console.log("todos 변경됨");

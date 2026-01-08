@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "./html/Button";
 import Checkbox from "./html/Checkbox";
 import SvgClose from "./svg/SvgClose";
 import SvgPencil from "./svg/SvgPencil";
 
-export default function TodoListItem({
+export default React.memo(function TodoListItem({
   todo,
   deleteTodo,
   toggleTodo,
@@ -15,6 +15,7 @@ export default function TodoListItem({
   deleteTodo: (id: number) => void;
   modifyTodo: (id: number, text: string) => void;
 }) {
+  console.log("TodoListItem");
   const [isModify, setIsModify] = useState(false);
   const [modifyText, setModifyText] = useState("");
   const handleModify = () => {
@@ -61,4 +62,4 @@ export default function TodoListItem({
       </div>
     </li>
   );
-}
+});
