@@ -1,12 +1,14 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // import { useTodo } from "../context/todo/useTodo";
 import TodoListEmpty from "./TodoListEmpty";
 import TodoListItem from "./TodoListItem";
-import type { RootState } from "../store/store";
+// import type { RootState } from "../store/store";
+import { useTodoStore } from "../store/todoStore";
 
 export default function TodoList() {
   //   const { todos } = useTodo();
-  const todos = useSelector((state: RootState) => state.todo.todos);
+  //   const todos = useSelector((state: RootState) => state.todo.todos);
+  const todos = useTodoStore((state) => state.todos);
   return (
     <ul className="todo__list">
       {/* <!-- 할 일 목록이 없을 때 --> */}

@@ -1,15 +1,17 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Button from "./html/Button";
 import Input from "./html/Input";
 // import { useTodoAction } from "../context/todo/useTodo";
-import { useDispatch } from "react-redux";
-import { addTodo } from "../store/features/todo/todoSlice";
-import { useState } from "react";
+// import { useDispatch } from "react-redux";
+// import { addTodo } from "../store/features/todo/todoSlice";
+// import { useState } from "react";
+import { useTodoStore } from "../store/todoStore";
 
 export default function TodoEditor() {
   const [text, setText] = useState("");
+  const addTodo = useTodoStore((state) => state.addTodo);
   //   const { addTodo } = useTodoAction();
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
   const handleTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
@@ -17,7 +19,7 @@ export default function TodoEditor() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (text.trim() === "") return;
-    dispatch(addTodo(text));
+    addTodo(text);
     setText("");
   };
   return (
