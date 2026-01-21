@@ -1,11 +1,12 @@
 "use client";
 
-import { signUp } from "@/api/auth";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Input from "../_components/Input";
+import useSignUpMutation from "@/hooks/auth/useSignUpMutation";
 
 export default function SignUpPage() {
+  const { mutate: signup } = useSignUpMutation();
   const router = useRouter();
   const [form, setForm] = useState({
     email: "",
@@ -15,25 +16,35 @@ export default function SignUpPage() {
     companyName: "",
   });
 
-  const handleSubmit = async () => {
+  const handlesignup = () => {
     if (form.password !== form.passwordConfirm) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
-
-    try {
-      await signUp({
+    signup(
+      {
         email: form.email,
         password: form.password,
         name: form.name,
         companyName: form.companyName,
-      });
-      alert("회원가입 완료!");
-      router.push("/login");
-    } catch (error) {
-      alert("회원가입 실패!");
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          // Todo: toast 적용
+          alert("회원가입 완료!");
+          router.push("/login");
+        },
+        onError: (error) => {
+          if (error instanceof Error) {
+            console.error(error.message);
+            // Todo: toast 적용
+            alert(error.message);
+          } else {
+            alert("회원가입 실패!");
+          }
+        },
+      },
+    );
   };
 
   return (
@@ -85,7 +96,7 @@ export default function SignUpPage() {
 
         <button
           type="button"
-          onClick={handleSubmit}
+          onClick={handlesignup}
           className="w-full p-2 text-white bg-blue-500 rounded hover:bg-blue-600"
         >
           가입하기

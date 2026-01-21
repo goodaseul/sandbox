@@ -7,7 +7,7 @@ import Posts from "./pages/posts/Posts";
 import PostRead from "./pages/posts/PostRead";
 import NotFoundPage from "./pages/NotFound";
 import Kakao from "./pages/auth/callback/Kakao";
-import Signup from "./pages/auth/Signup";
+import signup from "./pages/auth/signup";
 import EmailLogin from "./pages/auth/EmailLogin";
 import { fetchuserData, redirectAuth, requireAuth } from "./loader/auth.loader";
 import FullLoading from "../components/common/FullLoading";
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
       {
         path: "/auth/signup",
         loader: redirectAuth,
-        Component: Signup,
+        Component: signup,
       },
       {
         path: "/auth/callback/kakao",

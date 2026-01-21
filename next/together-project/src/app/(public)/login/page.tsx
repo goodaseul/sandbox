@@ -1,26 +1,28 @@
 "use client";
 
-import useLogin from "@/hooks/auth/useLoginMutation";
 import { useState } from "react";
 import Input from "../_components/Input";
+import { useRouter } from "next/navigation";
+import usesigninMutation from "@/hooks/auth/useSignInMutation";
 
 export default function LoginPage() {
-  const { mutate: login } = useLogin();
+  const { mutate: signin } = usesigninMutation();
+  const router = useRouter();
 
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  const handleSubmit = () => {
-    login(
+  const handlesignin = () => {
+    signin(
       {
         email: form.email,
         password: form.password,
       },
       {
-        onSuccess: (data) => {
-          localStorage.setItem("token", data.token);
+        onSuccess: () => {
+          router.push("https://www.naver.com/");
         },
       },
     );
@@ -43,7 +45,7 @@ export default function LoginPage() {
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
 
-      <button type="button" onClick={handleSubmit}>
+      <button type="button" onClick={handlesignin}>
         로그인
       </button>
     </form>
