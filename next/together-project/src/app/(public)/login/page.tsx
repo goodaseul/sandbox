@@ -1,7 +1,8 @@
 "use client";
 
-import useLogin from "@/hooks/useLogin";
+import useLogin from "@/hooks/auth/useLoginMutation";
 import { useState } from "react";
+import Input from "../_components/Input";
 
 export default function LoginPage() {
   const { mutate: login } = useLogin();
@@ -26,16 +27,15 @@ export default function LoginPage() {
   };
   return (
     <form className="grid gap-4 p-4">
-      <input
-        className="block w-full"
+      <Input
         name="user-email"
         type="email"
         value={`${form.email}`}
         placeholder="이메일을 입력해주세요."
         onChange={(e) => setForm({ ...form, email: e.target.value })}
       />
-      <input
-        className="block w-full"
+
+      <Input
         name="user-password"
         type="password"
         value={`${form.password}`}

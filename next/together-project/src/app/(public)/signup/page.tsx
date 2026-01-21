@@ -3,6 +3,7 @@
 import { signUp } from "@/api/auth";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Input from "../_components/Input";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -40,45 +41,45 @@ export default function SignUpPage() {
       <div className="w-full max-w-md space-y-4">
         <h1 className="text-2xl font-bold">회원가입</h1>
 
-        <input
-          className="block w-full p-2 border rounded"
+        <Input
           type="email"
-          value={form.email}
-          placeholder="이메일"
+          name="user-email"
+          value={`${form.email}`}
+          placeholder="이메일을 적어주세요."
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
 
-        <input
-          className="block w-full p-2 border rounded"
+        <Input
           type="text"
-          value={form.name}
-          placeholder="닉네임"
+          name="user-name"
+          value={`${form.name}`}
+          placeholder="닉네임을 적어주세요."
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
 
-        <input
-          className="block w-full p-2 border rounded"
+        <Input
           type="password"
-          value={form.password}
-          placeholder="비밀번호"
+          name="user-password"
+          value={`${form.password}`}
+          placeholder="비밀번호를 적어주세요."
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
-        <input
-          className="block w-full p-2 border rounded"
+        <Input
           type="password"
-          value={form.passwordConfirm}
-          placeholder="비밀번호 확인"
+          name="user-passwordConfirm"
+          value={`${form.passwordConfirm}`}
+          placeholder="비밀번호를 다시 적어주세요.."
           onChange={(e) =>
             setForm({ ...form, passwordConfirm: e.target.value })
           }
         />
 
-        <input
-          className="block w-full p-2 border rounded"
+        <Input
           type="text"
-          value={form.companyName}
-          placeholder="회사"
+          name="user-companyName"
+          value={`${form.companyName}`}
+          placeholder="회사이름을 적어주세요.."
           onChange={(e) => setForm({ ...form, companyName: e.target.value })}
         />
 
