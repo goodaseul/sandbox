@@ -1,38 +1,20 @@
 import { apiFetch } from "@/lib/api";
+import {
+  signUpRequest,
+  signUpResponse,
+  signInRequest,
+  signInResponse,
+} from "./types/auth";
 
-export interface signInRequest {
-  email: string;
-  password: string;
-}
-
-export interface signInResponse {
-  token: string;
-}
-
-export interface signUpRequest {
-  email: string;
-  password: string;
-  name: string;
-  companyName: string;
-}
-
-export interface signUpResponse {
-  // API 응답 구조에 맞게 수정
-  email: string;
-  password: string;
-  name: string;
-  companyName: string;
-}
-
-export function signIn(data: signInRequest) {
-  return apiFetch<signInResponse>("/auths/signin", {
+export function signUp(data: signUpRequest) {
+  return apiFetch<signUpResponse>("/auths/signup", {
     method: "POST",
     body: JSON.stringify(data),
   });
 }
 
-export function signUp(data: signUpRequest) {
-  return apiFetch<signUpResponse>("/auths/signup", {
+export function signIn(data: signInRequest) {
+  return apiFetch<signInResponse>("/auths/signin", {
     method: "POST",
     body: JSON.stringify(data),
   });

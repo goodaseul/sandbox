@@ -16,8 +16,5 @@ export async function apiFetch<T>(
   if (!res.ok) {
     throw new Error(`API ERROR: ${res.status}`);
   }
-  console.log("REQUEST URL:", `${BASE_URL}`);
-  console.log("REQUEST BODY:", options.body);
-
   return res.json();
 }
