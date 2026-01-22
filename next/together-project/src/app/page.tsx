@@ -1,5 +1,5 @@
-import SignInPage from "./(public)/signin/page";
+import MainPage from "./(public)/page";
 
 export default function Home() {
-  return <SignInPage />;
+  return <MainPage />;
 }

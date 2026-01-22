@@ -22,7 +22,7 @@ export default function SignInPage() {
       { email: form.email, password: form.password },
       {
         onSuccess: () => {
-          router.push("/main");
+          router.push("/");
         },
         onError: (error) => {
           alert("로그인 실패");

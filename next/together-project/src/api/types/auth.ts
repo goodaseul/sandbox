@@ -4,6 +4,12 @@ export interface SignInRequest {
 }
 export interface SignInResponse {
   token: string;
+  user?: {
+    id: number;
+    email: string;
+    name: string;
+    companyName: string;
+  };
 }
 export interface SignUpRequest {
   email: string;
@@ -12,8 +18,10 @@ export interface SignUpRequest {
   companyName: string;
 }
 export interface SignUpResponse {
+  id: number;
   email: string;
-  password: string;
   name: string;
   companyName: string;
+  token?: string;
+  createdAt: string;
 }

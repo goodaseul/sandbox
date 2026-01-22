@@ -6,7 +6,7 @@ import useSignOutMutation from "@/hooks/queries/auth/useSignOutMutation";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
-  const { data: user, isSuccess } = useGetUser();
+  const { data: user } = useGetUser();
   const router = useRouter();
   const { mutateAsync: signOut } = useSignOutMutation();
 
@@ -24,7 +24,7 @@ export default function Header() {
       <h1 className="text-2xl font-bold text-[#FF6F3C]">Together</h1>
 
       <ul className="flex gap-2">
-        {isSuccess ? (
+        {user ? (
           <>
             <li>{user.name}</li>
             <li>
