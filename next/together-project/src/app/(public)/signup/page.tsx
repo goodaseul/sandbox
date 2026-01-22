@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Input from "../_components/Input";
-import useSignUpMutation from "@/hooks/auth/useSignUpMutation";
+import useSignUpMutation from "@/hooks/queries/auth/useSignUpMutation";
+import Button from "@/components/Button";
+import Form from "../_components/Form";
 
 export default function SignUpPage() {
   const { mutate: signup } = useSignUpMutation();
@@ -48,68 +50,51 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-md space-y-4">
-        <h1 className="text-2xl font-bold">회원가입</h1>
+    <Form title={"회원가입"}>
+      <Input
+        type="email"
+        name="user-email"
+        value={`${form.email}`}
+        placeholder="이메일을 적어주세요."
+        onChange={(e) => setForm({ ...form, email: e.target.value })}
+      />
 
-        <Input
-          type="email"
-          name="user-email"
-          value={`${form.email}`}
-          placeholder="이메일을 적어주세요."
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
+      <Input
+        type="text"
+        name="user-name"
+        value={`${form.name}`}
+        placeholder="닉네임을 적어주세요."
+        onChange={(e) => setForm({ ...form, name: e.target.value })}
+      />
 
-        <Input
-          type="text"
-          name="user-name"
-          value={`${form.name}`}
-          placeholder="닉네임을 적어주세요."
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-        />
+      <Input
+        type="password"
+        name="user-password"
+        value={`${form.password}`}
+        placeholder="비밀번호를 적어주세요."
+        onChange={(e) => setForm({ ...form, password: e.target.value })}
+      />
 
-        <Input
-          type="password"
-          name="user-password"
-          value={`${form.password}`}
-          placeholder="비밀번호를 적어주세요."
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
+      <Input
+        type="password"
+        name="user-passwordConfirm"
+        value={`${form.passwordConfirm}`}
+        placeholder="비밀번호를 다시 적어주세요.."
+        onChange={(e) => setForm({ ...form, passwordConfirm: e.target.value })}
+      />
 
-        <Input
-          type="password"
-          name="user-passwordConfirm"
-          value={`${form.passwordConfirm}`}
-          placeholder="비밀번호를 다시 적어주세요.."
-          onChange={(e) =>
-            setForm({ ...form, passwordConfirm: e.target.value })
-          }
-        />
+      <Input
+        type="text"
+        name="user-companyName"
+        value={`${form.companyName}`}
+        placeholder="회사이름을 적어주세요.."
+        onChange={(e) => setForm({ ...form, companyName: e.target.value })}
+      />
 
-        <Input
-          type="text"
-          name="user-companyName"
-          value={`${form.companyName}`}
-          placeholder="회사이름을 적어주세요.."
-          onChange={(e) => setForm({ ...form, companyName: e.target.value })}
-        />
-
-        <button
-          type="button"
-          onClick={handlesignup}
-          className="w-full p-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-        >
-          가입하기
-        </button>
-
-        <button
-          type="button"
-          onClick={() => router.push("/login")}
-          className="w-full p-2 border rounded hover:bg-gray-100"
-        >
-          로그인하러 가기
-        </button>
+      <div className="flex justify-between gap-2">
+        <Button onClick={handlesignup}>가입하기</Button>
+        <Button onClick={() => router.push("/login")}>로그인</Button>
       </div>
-    </div>
+    </Form>
   );
 }

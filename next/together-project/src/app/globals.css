@@ -24,3 +24,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-gowun-dodum), sans-serif;
 }
+
+button {
+  display: block;
+  cursor: pointer;
+}

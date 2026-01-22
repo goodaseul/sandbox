@@ -1,3 +1,5 @@
+import SignInPage from "./(public)/signin/page";
+
 export default function Home() {
-  return <div>HOME</div>;
+  return <SignInPage />;
 }

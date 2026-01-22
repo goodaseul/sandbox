@@ -2,33 +2,37 @@
 
 import { useState } from "react";
 import Input from "../_components/Input";
+import Form from "../_components/Form";
+import Button from "@/components/Button";
+import useSignInMutation from "@/hooks/queries/auth/useSignInMutation";
 import { useRouter } from "next/navigation";
-import usesigninMutation from "@/hooks/auth/useSignInMutation";
 
-export default function LoginPage() {
-  const { mutate: signin } = usesigninMutation();
+export default function SignInPage() {
+  const { mutate: signIn } = useSignInMutation();
   const router = useRouter();
-
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  const handlesignin = () => {
-    signin(
-      {
-        email: form.email,
-        password: form.password,
-      },
+  const handleSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    signIn(
+      { email: form.email, password: form.password },
       {
         onSuccess: () => {
-          router.push("https://www.naver.com/");
+          router.push("/main");
+        },
+        onError: (error) => {
+          alert("로그인 실패");
+          console.error(error);
         },
       },
     );
   };
   return (
-    <form className="grid gap-4 p-4">
+    <Form title={"로그인"} onSubmit={handleSignIn}>
       <Input
         name="user-email"
         type="email"
@@ -45,9 +49,9 @@ export default function LoginPage() {
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
 
-      <button type="button" onClick={handlesignin}>
+      <Button type="submit" onClick={() => handleSignIn}>
         로그인
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 }

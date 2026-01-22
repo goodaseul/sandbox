@@ -1,17 +1,17 @@
-export interface signInRequest {
+export interface SignInRequest {
   email: string;
   password: string;
 }
-export interface signInResponse {
+export interface SignInResponse {
   token: string;
 }
-export interface signUpRequest {
+export interface SignUpRequest {
   email: string;
   password: string;
   name: string;
   companyName: string;
 }
-export interface signUpResponse {
+export interface SignUpResponse {
   email: string;
   password: string;
   name: string;
