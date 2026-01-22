@@ -8,28 +8,22 @@ import useSignInMutation from "@/hooks/queries/auth/useSignInMutation";
 import { useRouter } from "next/navigation";
 
 export default function SignInPage() {
-  const { mutate: signIn } = useSignInMutation();
+  const { mutateAsync: signIn } = useSignInMutation();
   const router = useRouter();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    signIn(
-      { email: form.email, password: form.password },
-      {
-        onSuccess: () => {
-          router.push("/");
-        },
-        onError: (error) => {
-          alert("로그인 실패");
-          console.error(error);
-        },
-      },
-    );
+    try {
+      await signIn({ email: form.email, password: form.password });
+      router.push("/");
+    } catch {
+      alert("로그인 실패");
+    }
   };
   return (
     <Form title={"로그인"} onSubmit={handleSignIn}>
@@ -45,13 +39,11 @@ export default function SignInPage() {
         name="user-password"
         type="password"
         value={`${form.password}`}
-        placeholder="비밀번호를 입력해주세요."
+        placeholder="비밀번호를 입력ㄴ해주세요."
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
 
-      <Button type="submit" onClick={() => handleSignIn}>
-        로그인
-      </Button>
+      <Button type="submit">로그인</Button>
     </Form>
   );
 }

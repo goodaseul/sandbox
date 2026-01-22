@@ -1,5 +1,5 @@
-import MainPage from "./(public)/page";
+import GathreringsPage from "./(public)/(gatherings)/page";
 
 export default function Home() {
-  return <MainPage />;
+  return <GathreringsPage />;
 }

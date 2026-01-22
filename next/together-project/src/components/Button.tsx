@@ -1,7 +1,7 @@
 type ButtonProps = {
   children: React.ReactNode;
   type?: "button" | "submit";
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export default function Button({

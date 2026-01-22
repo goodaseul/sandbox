@@ -50,7 +50,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <Form title={"회원가입"}>
+    <Form title={"회원가입"} onSubmit={handlesignup}>
       <Input
         type="email"
         name="user-email"
@@ -92,7 +92,7 @@ export default function SignUpPage() {
       />
 
       <div className="flex justify-between gap-2">
-        <Button onClick={handlesignup}>가입하기</Button>
+        <Button>가입하기</Button>
         <Button onClick={() => router.push("/login")}>로그인</Button>
       </div>
     </Form>
