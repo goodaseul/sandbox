@@ -20,7 +20,7 @@ export default function SignInPage() {
 
     try {
       await signIn({ email: form.email, password: form.password });
-      router.push("/");
+      router.push("/gatherings");
     } catch {
       alert("로그인 실패");
     }
