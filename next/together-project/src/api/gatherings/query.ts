@@ -1,6 +1,10 @@
 import { apiFetch } from "@/lib/api";
 import { buildGatheringsQuery } from ".";
-import { GatheringsFilter, GatheringsResponse } from "./types";
+import {
+  GatheringsFilter,
+  GatheringsRequest,
+  GatheringsResponse,
+} from "./types";
 
 export async function getGatherings(
   filters?: GatheringsFilter,
@@ -9,4 +13,11 @@ export async function getGatherings(
   const url = query ? `/gatherings?${query}` : `/gatherings`;
 
   return apiFetch<GatheringsResponse>(url);
+}
+
+export function createGatherings(data: GatheringsRequest) {
+  return apiFetch<GatheringsResponse>("/gatherings", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
 }

@@ -1,5 +1,6 @@
 type ButtonProps = {
   children: React.ReactNode;
+  variant?: "tab";
   type?: "button" | "submit";
   className?: string;
   onClick?: () => void;
@@ -7,12 +8,19 @@ type ButtonProps = {
 
 export default function Button({
   children,
+  variant,
   type = "button",
   className,
   onClick,
 }: ButtonProps) {
+  const tabStyles =
+    variant === "tab" && "rounded-md py-2 hover:bg-point transition-all";
   return (
-    <button type={type} onClick={onClick} className={`w-full ${className}`}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={`flex-1 ${className} ${tabStyles}`}
+    >
       {children}
     </button>
   );

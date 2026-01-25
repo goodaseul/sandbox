@@ -1,21 +1,28 @@
-type InputType = {
-  type: "email" | "password" | "text";
+import { InputType } from "@/constants/input";
+
+type InputProps = {
+  id: string;
+  type: InputType;
   name: string;
   value: string;
-  placeholder: string;
+  placeholder?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 };
 
 export default function Input({
+  id,
   type = "text",
   name,
   value,
   placeholder,
   onChange,
-}: InputType) {
+  className,
+}: InputProps) {
   return (
     <input
-      className="block w-full p-2 border rounded"
+      id={id}
+      className={`block w-full p-2 border rounded ${className}`}
       name={name}
       type={type}
       value={value}

@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Input from "../_components/Input";
+import Input from "../../../components/Input";
 import useSignUpMutation from "@/hooks/queries/auth/useSignUpMutation";
 import Button from "@/components/Button";
-import Form from "../_components/Form";
+import Form from "../../../components/Form";
 
 export default function SignUpPage() {
   const { mutate: signup } = useSignUpMutation();

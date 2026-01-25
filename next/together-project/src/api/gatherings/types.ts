@@ -1,11 +1,13 @@
+import { GatheringType, Location } from "@/constants/gatherings";
+
 export interface Gathering {
   teamId: number;
   id: number;
-  type: string;
+  type: GatheringType;
   name: string;
   dateTime: string;
   registrationEnd: string;
-  location: string;
+  location: Location;
   participantCount: number;
   capacity: number;
   image: string;
@@ -14,10 +16,20 @@ export interface Gathering {
 }
 export type GatheringsResponse = Gathering[];
 
+export type GatheringsRequest = {
+  location: Location;
+  type: GatheringType;
+  name: string;
+  dateTime: string;
+  capacity: number;
+  image: File | null;
+  registrationEnd?: string;
+};
+
 export interface GatheringsFilter {
   id?: number | number[];
-  type?: string;
-  location?: string;
+  type?: GatheringType;
+  location?: Location;
   date?: string;
   createdBy?: number;
   sortBy?: string;
@@ -25,17 +37,3 @@ export interface GatheringsFilter {
   limit?: number;
   offset?: number;
 }
-
-export type GatheringType =
-  | "DALLAEMFIT"
-  | "OFFICE_STRETCHING"
-  | "MINDFULNESS"
-  | "WORKATION";
-
-export const TABS = [
-  { label: "전체", value: "ALL" },
-  { label: "달램핏", value: "DALLAEMFIT" },
-  { label: "오피스 스트레칭", value: "OFFICE_STRETCHING" },
-  { label: "마인드풀니스", value: "MINDFULNESS" },
-  { label: "워케이션", value: "WORKATION" },
-] as const;

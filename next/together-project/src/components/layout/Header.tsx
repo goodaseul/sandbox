@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <header className="flex items-center justify-between p-5">
-      <h1 className="text-2xl font-bold text-[#FF6F3C]">
+      <h1 className="text-2xl font-bold text-point">
         <Link href="/gatherings">Together</Link>
       </h1>
 

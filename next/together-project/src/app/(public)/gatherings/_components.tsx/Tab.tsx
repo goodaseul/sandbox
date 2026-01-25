@@ -1,9 +1,9 @@
-import { GatheringType, TABS } from "@/api/gatherings";
+import { TABS, TabValue } from "@/app/(protected)/constatns";
 import Button from "@/components/Button";
 
 type TabProps = {
-  activeTab: "ALL" | GatheringType;
-  handleTypeTab: (type: "ALL" | GatheringType) => void;
+  activeTab: TabValue;
+  handleTypeTab: (type: TabValue) => void;
 };
 export default function Tab({ activeTab, handleTypeTab }: TabProps) {
   return (
@@ -11,8 +11,9 @@ export default function Tab({ activeTab, handleTypeTab }: TabProps) {
       {TABS.map((tab) => (
         <Button
           key={tab.value}
+          variant="tab"
           type="button"
-          className={activeTab === tab.value ? "underline text-[#FF6F3C]" : ""}
+          className={activeTab === tab.value ? "bg-point font-bold" : ""}
           onClick={() => handleTypeTab(tab.value)}
         >
           {tab.label}

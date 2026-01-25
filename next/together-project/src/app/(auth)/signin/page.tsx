@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Input from "../_components/Input";
-import Form from "../_components/Form";
+import Input from "../../../components/Input";
+import Form from "../../../components/Form";
 import Button from "@/components/Button";
 import useSignInMutation from "@/hooks/queries/auth/useSignInMutation";
 import { useRouter } from "next/navigation";
@@ -39,7 +39,7 @@ export default function SignInPage() {
         name="user-password"
         type="password"
         value={`${form.password}`}
-        placeholder="비밀번호를 입력ㄴ해주세요."
+        placeholder="비밀번호를 입력해주세요."
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
 
