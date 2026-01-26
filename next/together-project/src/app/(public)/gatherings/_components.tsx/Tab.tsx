@@ -1,5 +1,5 @@
-import { TABS, TabValue } from "@/app/(protected)/constatns";
 import Button from "@/components/Button";
+import { TABS, TabValue } from "@/constants/gatherings";
 
 type TabProps = {
   activeTab: TabValue;
@@ -7,7 +7,7 @@ type TabProps = {
 };
 export default function Tab({ activeTab, handleTypeTab }: TabProps) {
   return (
-    <div className="flex">
+    <div className="max-w-4xl grid grid-cols-5 gap-2 text-sm xl:text-lg my-5">
       {TABS.map((tab) => (
         <Button
           key={tab.value}

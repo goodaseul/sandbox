@@ -21,19 +21,7 @@ export type GatheringsRequest = {
   type: GatheringType;
   name: string;
   dateTime: string;
+  registrationEnd: string;
   capacity: number;
-  image: File | null;
-  registrationEnd?: string;
+  image?: string;
 };
-
-export interface GatheringsFilter {
-  id?: number | number[];
-  type?: GatheringType;
-  location?: Location;
-  date?: string;
-  createdBy?: number;
-  sortBy?: string;
-  sortOrder?: "asc" | "desc";
-  limit?: number;
-  offset?: number;
-}

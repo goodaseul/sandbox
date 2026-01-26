@@ -34,7 +34,7 @@ export default function SignUpPage() {
         onSuccess: () => {
           // Todo: toast 적용
           alert("회원가입 완료!");
-          router.push("/login");
+          router.push("/signin");
         },
         onError: (error) => {
           if (error instanceof Error) {
@@ -52,6 +52,7 @@ export default function SignUpPage() {
   return (
     <Form title={"회원가입"} onSubmit={handlesignup}>
       <Input
+        id="email"
         type="email"
         name="user-email"
         value={`${form.email}`}
@@ -60,6 +61,7 @@ export default function SignUpPage() {
       />
 
       <Input
+        id="name"
         type="text"
         name="user-name"
         value={`${form.name}`}
@@ -68,6 +70,7 @@ export default function SignUpPage() {
       />
 
       <Input
+        id="password"
         type="password"
         name="user-password"
         value={`${form.password}`}
@@ -76,6 +79,7 @@ export default function SignUpPage() {
       />
 
       <Input
+        id="passwordConfirm"
         type="password"
         name="user-passwordConfirm"
         value={`${form.passwordConfirm}`}
@@ -84,6 +88,7 @@ export default function SignUpPage() {
       />
 
       <Input
+        id="companyName"
         type="text"
         name="user-companyName"
         value={`${form.companyName}`}
@@ -92,7 +97,7 @@ export default function SignUpPage() {
       />
 
       <div className="flex justify-between gap-2">
-        <Button>가입하기</Button>
+        <Button onClick={handlesignup}>가입하기</Button>
         <Button onClick={() => router.push("/login")}>로그인</Button>
       </div>
     </Form>

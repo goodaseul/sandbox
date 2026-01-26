@@ -28,6 +28,7 @@ export default function SignInPage() {
   return (
     <Form title={"로그인"} onSubmit={handleSignIn}>
       <Input
+        id="email"
         name="user-email"
         type="email"
         value={`${form.email}`}
@@ -36,6 +37,7 @@ export default function SignInPage() {
       />
 
       <Input
+        id="password"
         name="user-password"
         type="password"
         value={`${form.password}`}

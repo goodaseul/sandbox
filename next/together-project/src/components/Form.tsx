@@ -1,7 +1,7 @@
 type FormProps = {
   children: React.ReactNode;
   title?: string;
-  onSubmit?: (e: React.FormEvent) => void;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 export default function Form({ children, title, onSubmit }: FormProps) {

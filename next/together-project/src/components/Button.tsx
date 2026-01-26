@@ -14,7 +14,7 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const tabStyles =
-    variant === "tab" && "rounded-md py-2 hover:bg-point transition-all";
+    variant === "tab" && "rounded-md py-1 hover:bg-point transition-all";
   return (
     <button
       type={type}

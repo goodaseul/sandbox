@@ -1,14 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { gatheringsQueryKey } from "./queryKey";
-import { GatheringsFilter } from "@/api/gatherings/types";
-import { getGatherings } from "@/api/gatherings/query";
+import { getGatherings } from "@/api/gatherings";
 
-export default function useGatherings(filters?: GatheringsFilter) {
+export default function useGatherings() {
   return useQuery({
-    queryKey: gatheringsQueryKey.list(filters),
-    queryFn: () => getGatherings(filters),
-    staleTime: 0,
-    gcTime: 0,
-    refetchOnMount: "always",
+    queryKey: gatheringsQueryKey.all,
+    queryFn: getGatherings,
   });
 }
