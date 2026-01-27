@@ -24,8 +24,15 @@ export default function GatheringsPage() {
     <div className="p-5">
       <h1 className="text-2xl font-bold mb-5">모임 목록</h1>
 
-      <Link href="/gatherings/new">모임 만들기</Link>
-
+      <p>
+        <Link href="/gatherings/new">모임 만들기 &gt;</Link>
+      </p>
+      <p>
+        <Link href="/gatherings/joined">참여한 모임 보러가기 &gt;</Link>
+      </p>
+      <p>
+        <Link href="/gatherings/me">내가 만든 모임 보러가기 &gt;</Link>
+      </p>
       <Tab activeTab={activeTab} handleTypeTab={setActiveTab} />
 
       <TabContent filteredGathergins={filteredGatherings} />

@@ -3,7 +3,7 @@ type ButtonProps = {
   variant?: "tab";
   type?: "button" | "submit";
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 export default function Button({
