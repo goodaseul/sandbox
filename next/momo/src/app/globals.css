@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdfdfd;
+  --foreground: #1c1f1a;
+  --surface: #ffffff;
+  --text-secondary: #5a5f56;
+  --text-muted: #949a8e;
+  --point: #76846a;
+  --point-foreground: #ffffff;
+  --border: #edf0eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a1c18;
+    --foreground: #eceee9;
+    --surface: #242722;
+    --text-secondary: #adb3a8;
+    --text-muted: #6b7167;
+    --point: #acbc9c;
+    --point-foreground: #1c1f1a;
+    --border: #2d312a;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-point: var(--point);
+  --color-point-foreground: var(--point-foreground);
+  --color-border: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Pretendard Variable", "Pretendard", Helvetica, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
