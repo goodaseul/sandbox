@@ -1,6 +1,18 @@
-export default function Title({ children }: { children: React.ReactNode }) {
+type Variant = "white" | "dark";
+
+interface TitleProps {
+  children: React.ReactNode;
+  variant?: Variant;
+}
+
+export default function Title({ children, variant = "dark" }: TitleProps) {
   return (
-    <h2 className="text-2xl font-semibold text-left text-background mb-8">
+    <h2
+      className={`
+        text-2xl font-semibold mb-8
+        ${variant === "dark" ? "text-black" : "text-white"}
+      `}
+    >
       {children}
     </h2>
   );

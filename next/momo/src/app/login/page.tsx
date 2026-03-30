@@ -11,7 +11,7 @@ import Button from "@/src/components/common/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSignInMutation } from "@/src/hooks/queries/auth";
 import { toast } from "sonner";
-import { error } from "console";
+import ErrorNotice from "@/src/components/common/ErrorNotice";
 
 interface LoginInputs {
   email: string;
@@ -31,10 +31,11 @@ export default function LoginPage() {
 
   const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
     try {
-      await signIn({
+      const { token } = await signIn({
         email: data.email,
         password: data.password,
       });
+      localStorage.setItem("accessToken", token);
       toast.success("로그인이 되었습니다.");
     } catch (error) {
       if (error instanceof Error) console.error(error.message);
@@ -42,8 +43,8 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="py-10">
-      <div className="w-full max-w-md mx-auto rounded-3xl p-8 shadow-sm bg-foreground text-background backdrop:blur">
+    <main className="py-10">
+      <section className="w-full max-w-md mx-auto rounded-3xl p-8 shadow-sm bg-foreground text-background backdrop:blur">
         <Title>로그인</Title>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -63,7 +64,7 @@ export default function LoginPage() {
                 },
               })}
             />
-            <Notice>{errors.email?.message}</Notice>
+            <ErrorNotice>{errors.email?.message}</ErrorNotice>
           </div>
 
           <div className="space-y-2">
@@ -81,7 +82,7 @@ export default function LoginPage() {
                   },
                 })}
               />
-              <Notice>{errors.password?.message}</Notice>
+              <ErrorNotice>{errors.password?.message}</ErrorNotice>
               <ShowPassword
                 onClick={() => setShowPassword(!showPassword)}
                 show={showPassword}
@@ -89,7 +90,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <Button type="submit" disabled={isValid}>
+          <Button type="submit" disabled={!isValid}>
             로그인
           </Button>
         </form>
@@ -99,7 +100,7 @@ export default function LoginPage() {
             회원가입
           </Link>
         </Notice>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }

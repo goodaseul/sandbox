@@ -11,6 +11,7 @@ import Button from "@/src/components/common/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useSignUpMutation } from "@/src/hooks/queries/auth";
+import ErrorNotice from "@/src/components/common/ErrorNotice";
 
 interface JoinInputs {
   name: string;
@@ -51,8 +52,8 @@ export default function JoinPage() {
   };
 
   return (
-    <section className="py-10">
-      <div className="w-full max-w-md mx-auto rounded-3xl p-8 shadow-sm bg-foreground text-background backdrop:blur">
+    <main className="py-10">
+      <section className="w-full max-w-md mx-auto rounded-3xl p-8 shadow-sm bg-foreground text-background backdrop:blur">
         <Title>회원가입</Title>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -66,7 +67,7 @@ export default function JoinPage() {
                 required: "이름은 필수입니다.",
               })}
             />
-            <Notice>{errors.name?.message}</Notice>
+            <ErrorNotice>{errors.name?.message}</ErrorNotice>
           </div>
 
           <div className="space-y-2">
@@ -83,7 +84,7 @@ export default function JoinPage() {
                 },
               })}
             />
-            <Notice>{errors.email?.message}</Notice>
+            <ErrorNotice>{errors.email?.message}</ErrorNotice>
           </div>
 
           <div className="space-y-2">
@@ -96,7 +97,7 @@ export default function JoinPage() {
                 required: "회사명은 필수입니다.",
               })}
             />
-            <Notice>{errors.company?.message}</Notice>
+            <ErrorNotice>{errors.company?.message}</ErrorNotice>
           </div>
 
           <div className="space-y-2">
@@ -120,7 +121,7 @@ export default function JoinPage() {
                 show={showPassword}
               />
             </div>
-            <Notice>{errors.passwordConfirm?.message}</Notice>
+            <ErrorNotice>{errors.passwordConfirm?.message}</ErrorNotice>
           </div>
 
           <div className="space-y-2">
@@ -141,10 +142,10 @@ export default function JoinPage() {
                 show={showConfirmPassword}
               />
             </div>
-            <Notice>{errors.passwordConfirm?.message}</Notice>
+            <ErrorNotice>{errors.passwordConfirm?.message}</ErrorNotice>
           </div>
 
-          <Button type="submit" disabled={isValid}>
+          <Button type="submit" disabled={!isValid}>
             회원가입
           </Button>
         </form>
@@ -155,7 +156,7 @@ export default function JoinPage() {
             로그인
           </Link>
         </Notice>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }

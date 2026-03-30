@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "../components/layout/header/Header";
 import Provders from "./provider";
 import { Toaster } from "sonner";
+import { Header } from "../components/layout/header/Header";
 
 export const metadata: Metadata = {
   title: "momo",

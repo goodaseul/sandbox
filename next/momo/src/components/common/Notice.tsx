@@ -6,7 +6,6 @@ interface NoticeProps {
 }
 
 export default function Notice({ children, variant = "left" }: NoticeProps) {
-  const isVariant =
-    variant === "left" ? "text-left text-red-800" : "text-center";
+  const isVariant = variant === "left" ? "text-left" : "text-center";
   return <p className={`mt-3 text-sm ${isVariant}`}>{children}</p>;
 }

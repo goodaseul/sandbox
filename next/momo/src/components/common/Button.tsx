@@ -1,20 +1,43 @@
 type ButtonType = "submit" | "button";
+type ButtonVariant = "primary" | "outline" | "ghost" | "muted";
+
 interface ButtonProps {
-  type: ButtonType;
+  type?: ButtonType;
   disabled?: boolean;
+  variant?: ButtonVariant;
   children: React.ReactNode;
+  className?: string;
 }
 
 export default function Button({
   type = "button",
-  disabled,
+  disabled = false,
+  variant = "primary",
   children,
+  className,
 }: ButtonProps) {
+  const baseStyle =
+    "w-full py-3 px-4 mt-4 rounded-xl font-medium transition disabled:opacity-50 disabled:cursor-not-allowed";
+
+  const variants = {
+    primary: "bg-point text-point-foreground hover:opacity-90",
+
+    outline: "border border-point text-point bg-transparent hover:bg-point/10",
+
+    ghost: "text-foreground hover:bg-surface",
+
+    muted: "bg-surface text-text-secondary hover:bg-border",
+  };
+
   return (
     <button
       type={type}
-      disabled={!disabled}
-      className="w-full py-3 px-4 mt-4 bg-muted text-muted-foreground rounded-xl font-medium transition-colors disabled:opacity-70 disabled:cursor-not-allowed hover:bg-point hover:text-white disabled:hover:bg-muted disabled:hover:text-muted-foreground"
+      disabled={disabled}
+      className={`
+        ${baseStyle}
+        ${variants[variant]}
+        ${className}
+      `}
     >
       {children}
     </button>
