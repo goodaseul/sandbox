@@ -1,14 +1,17 @@
 import {
-  GetGatheringsJoinedParams,
-  GetGatheringsMyParams,
+  GatheringsJoinedParams,
+  GatheringsMyParams,
+  GatheringsParams,
 } from "@/src/api/types/gatherings";
 
 export const queryKeys = {
   gatherings: {
     all: ["gatherings"] as const,
-    my: (params: GetGatheringsMyParams) =>
+    list: (params: GatheringsParams) =>
+      [...queryKeys.gatherings.all, "list", params] as const,
+    my: (params: GatheringsMyParams) =>
       [...queryKeys.gatherings.all, "my", params] as const,
-    joined: (params: GetGatheringsJoinedParams) =>
+    joined: (params: GatheringsJoinedParams) =>
       [...queryKeys.gatherings.all, "joined", params] as const,
   },
 };

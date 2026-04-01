@@ -1,10 +1,10 @@
 import { fetcher } from "../fetcher";
 import {
-  GetGatheringsJoinedParams,
-  GetGatheringsJoinedResponse,
+  GatheringsJoinedParams,
+  GatheringsJoinedResponse,
 } from "../types/gatherings";
 
-export const getGatheringsJoined = (params: GetGatheringsJoinedParams) => {
+export const getGatheringsJoined = (params: GatheringsJoinedParams) => {
   const query = new URLSearchParams({
     sortBy: params.sortBy ?? "dateTime",
     sortOrder: params.sortOrder ?? "desc",
@@ -14,5 +14,5 @@ export const getGatheringsJoined = (params: GetGatheringsJoinedParams) => {
     completed: String(params.completed),
   });
 
-  return fetcher<GetGatheringsJoinedResponse[]>(`gatherings/joined?${query}`);
+  return fetcher<GatheringsJoinedResponse[]>(`gatherings/joined?${query}`);
 };
