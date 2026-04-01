@@ -5,10 +5,14 @@ import { MeetupCard } from "./_components/MeetupCard";
 import { ProfileCard } from "./_components/ProfileCard";
 import { TabNav } from "./_components/TabNav";
 import Notice from "@/src/components/common/Notice";
-import { useGatheringsMy } from "@/src/hooks/queries/gatherings";
+import {
+  useGatheringsJoined,
+  useGatheringsMy,
+} from "@/src/hooks/queries/gatherings";
 import Title from "@/src/components/common/Title";
 import { useUser } from "@/src/hooks/queries/auth";
 import { useRouter, useSearchParams } from "next/navigation";
+import Button from "@/src/components/common/Button";
 
 const tabs = [
   { id: "meetups", label: "나의 모임" },
@@ -28,7 +32,13 @@ export default function MypagePage() {
   };
 
   const { data: user } = useUser();
-  const { data: myMeetups, isLoading, isError } = useGatheringsMy();
+  const { data: myMeetups = [] } = useGatheringsMy();
+  const { data: joinedMeetups = [] } = useGatheringsJoined();
+
+  const imageSrc =
+    user?.image && user.image.startsWith("http")
+      ? user.image
+      : "/layout/default-profile.png";
 
   if (!user) return null;
   return (
@@ -47,7 +57,7 @@ export default function MypagePage() {
                 name={user?.name}
                 company={user?.companyName}
                 email={user?.email}
-                // avatarUrl={user?.}
+                avatarUrl={imageSrc}
               />
             </div>
           </div>
@@ -60,28 +70,67 @@ export default function MypagePage() {
             />
 
             <div className="space-y-3 lg:space-y-4">
-              {activeTab === "meetups" && (
-                <Notice>만든 모임이 없습니다.</Notice>
-              )}
-
+              {activeTab === "meetups" &&
+                (joinedMeetups.length > 0 ? (
+                  joinedMeetups.map((meetup) => (
+                    <MeetupCard
+                      key={meetup.id}
+                      title={meetup.name}
+                      imageUrl={meetup.image}
+                      currentParticipants={meetup.participantCount}
+                      maxParticipants={meetup.capacity}
+                      location={meetup.location}
+                      date={meetup.dateTime.slice(0, 10)}
+                      time={meetup.dateTime.slice(11, 16)}
+                      isCompleted={meetup.isCompleted}
+                    />
+                  ))
+                ) : (
+                  <Notice variant="center">나의 모임이 없습니다.</Notice>
+                ))}
               {activeTab === "reviews" && (
-                <Notice>작성한 리뷰가 없습니다.</Notice>
+                <>
+                  <div className="flex gap-2">
+                    <Button>작성 가능한 리뷰</Button>
+                    <Button variant="outline">작성한 리뷰</Button>
+                  </div>
+
+                  {joinedMeetups?.length > 0 ? (
+                    joinedMeetups.map((meetup) => (
+                      <MeetupCard
+                        key={meetup.id}
+                        title={meetup.name}
+                        imageUrl={meetup.image}
+                        currentParticipants={meetup.participantCount}
+                        maxParticipants={meetup.capacity}
+                        location={meetup.location}
+                        date={meetup.dateTime.slice(0, 10)}
+                        time={meetup.dateTime.slice(11, 16)}
+                        isCompleted={meetup.isCompleted}
+                      />
+                    ))
+                  ) : (
+                    <Notice variant="center">작성한 리뷰가 없습니다.</Notice>
+                  )}
+                </>
               )}
 
               {activeTab === "my-meetups" &&
-                myMeetups?.map((meetup) => (
-                  <MeetupCard
-                    key={meetup.id}
-                    title={meetup.name}
-                    imageUrl={meetup.image}
-                    // status={meetup.status}
-                    // isFavorited={meetup.isFavorited}
-                    currentParticipants={meetup.participantCount}
-                    maxParticipants={meetup.capacity}
-                    location={meetup.location}
-                    date={meetup.dateTime.slice(0, 10)}
-                    time={meetup.dateTime.slice(11, 16)}
-                  />
+                (myMeetups.length > 0 ? (
+                  myMeetups.map((meetup) => (
+                    <MeetupCard
+                      key={meetup.id}
+                      title={meetup.name}
+                      imageUrl={meetup.image}
+                      currentParticipants={meetup.participantCount}
+                      maxParticipants={meetup.capacity}
+                      location={meetup.location}
+                      date={meetup.dateTime.slice(0, 10)}
+                      time={meetup.dateTime.slice(11, 16)}
+                    />
+                  ))
+                ) : (
+                  <Notice variant="center">내가 만든 모임이 없습니다.</Notice>
                 ))}
             </div>
           </div>

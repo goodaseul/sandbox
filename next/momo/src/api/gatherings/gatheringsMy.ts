@@ -1,10 +1,10 @@
 import { fetcher } from "../fetcher";
 import {
   GatheringsMyResponse,
-  GetMyGatheringsParams,
+  GetGatheringsMyParams,
 } from "../types/gatherings";
 
-export const getGatheringsMy = (params: GetMyGatheringsParams) => {
+export const getGatheringsMy = (params: GetGatheringsMyParams) => {
   const query = new URLSearchParams({
     sortBy: params.sortBy ?? "dateTime",
     sortOrder: params.sortOrder ?? "desc",

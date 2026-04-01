@@ -14,6 +14,7 @@ interface TabNavProps {
 }
 
 export function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
+  console.log(activeTab);
   return (
     <div className="border-b border-border">
       <nav className="flex">
@@ -24,7 +25,7 @@ export function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
             className={twMerge(
               "px-4 lg:px-8 py-3 text-sm lg:text-base font-medium transition-colors relative",
               activeTab === tab.id
-                ? "text-foreground"
+                ? "text-foreground border-b border-point"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >

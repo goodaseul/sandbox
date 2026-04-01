@@ -12,6 +12,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useSignInMutation } from "@/src/hooks/queries/auth";
 import { toast } from "sonner";
 import ErrorNotice from "@/src/components/common/ErrorNotice";
+import { useRouter } from "next/navigation";
 
 interface LoginInputs {
   email: string;
@@ -26,6 +27,7 @@ export default function LoginPage() {
   } = useForm<LoginInputs>({
     mode: "onChange",
   });
+  const router = useRouter();
   const { mutateAsync: signIn } = useSignInMutation();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -37,6 +39,7 @@ export default function LoginPage() {
       });
       localStorage.setItem("accessToken", token);
       toast.success("로그인이 되었습니다.");
+      router.push("/");
     } catch (error) {
       if (error instanceof Error) console.error(error.message);
     }

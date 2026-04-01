@@ -6,14 +6,14 @@ interface ProfileCardProps {
   name: string;
   company: string;
   email: string;
-  //   avatarUrl?: string;
+  avatarUrl?: string;
 }
 
 export function ProfileCard({
   name,
   company,
   email,
-  //   avatarUrl,
+  avatarUrl,
 }: ProfileCardProps) {
   return (
     <div className="bg-accent border-0 shadow-none">
@@ -21,7 +21,7 @@ export function ProfileCard({
         <div className="items-center gap-4">
           <div className="w-28 h-28 mx-auto border rounded-full">
             <Avatar>
-              <AvatarImage />
+              <AvatarImage src={avatarUrl} />
             </Avatar>
           </div>
           <div className="">
