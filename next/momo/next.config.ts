@@ -1,18 +1,15 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   images: {
-    domains: ["images.unsplash.com"],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "sprint-fe-project.s3.ap-northeast-2.amazonaws.com",
-      },
-      {
-        protocol: "https",
-        hostname: "picsum.photos",
+        pathname: "/**",
       },
     ],
+    domains: ["picsum.photos"],
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

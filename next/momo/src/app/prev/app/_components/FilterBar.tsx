@@ -3,7 +3,13 @@
 import { useRef, useEffect, useState } from "react";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import { GatheringType, SortBy } from "@/src/types/gatherings";
+import {
+  dateOptions,
+  locationOptions,
+  SortBy,
+  sortOptions,
+  typeFilter,
+} from "@/src/app/prev/types/gatherings";
 
 interface FilterBarProps {
   active: string;
@@ -15,32 +21,6 @@ interface FilterBarProps {
   date: string;
   onDateChange: (date: string) => void;
 }
-
-const typeFilter: { id: GatheringType | "all"; label: string }[] = [
-  { id: "all", label: "전체" },
-  { id: "OFFICE_STRETCHING", label: "오피스 스트레칭" },
-  { id: "MINDFULNESS", label: "마인드풀니스" },
-];
-
-const sortOptions: { id: SortBy; label: string }[] = [
-  { id: "dateTime", label: "마감 임박" },
-  { id: "participantCount", label: "참여 인원 순" },
-];
-
-const locationOptions = [
-  { id: "all", label: "지역 전체" },
-  { id: "건대입구", label: "건대입구" },
-  { id: "을지로3가", label: "을지로3가" },
-  { id: "신림", label: "신림" },
-  { id: "홍대입구", label: "홍대입구" },
-];
-
-const dateOptions = [
-  { id: "all", label: "날짜 전체" },
-  { id: "today", label: "오늘" },
-  { id: "tomorrow", label: "내일" },
-  { id: "this-week", label: "이번 주" },
-];
 
 export function FilterBar({
   active,
@@ -101,16 +81,17 @@ export function FilterBar({
         </div>
 
         {/* Secondary Filters */}
-        <div className="flex items-center gap-2 sm:gap-4 text-sm">
+        <div className="flex items-center gap-2 text-sm sm:gap-4">
           {/* Region Dropdown */}
           <div className="relative" ref={regionRef}>
             <button
               onClick={() => setShowRegionDropdown(!showRegionDropdown)}
-              className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-1 transition-colors text-muted-foreground hover:text-foreground"
             >
               <span>
-                {locationOptions.find((o) => o.id === location)?.label ??
-                  "지역 전체"}
+                {locationOptions.find(
+                  (locationOption) => locationOption.id === location,
+                )?.label ?? "지역 전체"}
               </span>
               <ChevronDown className="w-4 h-4" />
             </button>
@@ -142,10 +123,11 @@ export function FilterBar({
           <div className="relative" ref={dateRef}>
             <button
               onClick={() => setShowDateDropdown(!showDateDropdown)}
-              className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-1 transition-colors text-muted-foreground hover:text-foreground"
             >
               <span>
-                {dateOptions.find((o) => o.id === date)?.label ?? "날짜 전체"}
+                {dateOptions.find((dateOption) => dateOption.id === date)
+                  ?.label ?? "날짜 전체"}
               </span>
               <ChevronDown className="w-4 h-4" />
             </button>
@@ -177,11 +159,14 @@ export function FilterBar({
           <div className="relative" ref={sortRef}>
             <button
               onClick={() => setShowSortDropdown(!showSortDropdown)}
-              className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-1 transition-colors text-muted-foreground hover:text-foreground"
             >
               <SlidersHorizontal className="w-4 h-4" />
               <span className="hidden sm:inline">
-                {sortOptions.find((o) => o.id === sortBy)?.label}
+                {
+                  sortOptions.find((sortOption) => sortOption.id === sortBy)
+                    ?.label
+                }
               </span>
             </button>
 

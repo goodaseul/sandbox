@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Pretendard Variable", "Pretendard", Helvetica, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}

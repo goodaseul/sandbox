@@ -7,6 +7,7 @@ interface ButtonProps {
   variant?: ButtonVariant;
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
 export default function Button({
@@ -15,6 +16,7 @@ export default function Button({
   variant = "primary",
   children,
   className,
+  onClick,
 }: ButtonProps) {
   const baseStyle =
     "w-full py-3 px-4 mt-4 rounded-xl font-medium transition disabled:opacity-50 disabled:cursor-not-allowed";
@@ -38,6 +40,7 @@ export default function Button({
         ${variants[variant]}
         ${className}
       `}
+      onClick={onClick}
     >
       {children}
     </button>

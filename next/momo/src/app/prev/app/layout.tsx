@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import "./global.css";
-import { Toaster } from "sonner";
+import "./globals.css";
 import Provders from "./provider";
-import Link from "next/link";
+import { Toaster } from "sonner";
+import { Header } from "../components/layout/header/Header";
 
 export const metadata: Metadata = {
-  title: "Split feature",
-  description: "",
+  title: "momo",
+  description:
+    "친구, 스터디, 취미 모임까지. momo에서 빠르게 만들고, 쉽게 참여하세요.",
 };
 
 export default function RootLayout({
@@ -19,7 +20,7 @@ export default function RootLayout({
       <body className={`antialiased`}>
         <Provders>
           <Toaster position="top-center" />
-          <Link href="/">첫화면으로 가기</Link>
+          <Header />
           {children}
         </Provders>
       </body>

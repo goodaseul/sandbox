@@ -1,4 +1,4 @@
-import { SortBy, SortOrder } from "@/src/types/gatherings";
+import { SortBy, SortOrder } from "@/src/app/prev/types/gatherings";
 
 type BaseGathering = {
   id: number;
