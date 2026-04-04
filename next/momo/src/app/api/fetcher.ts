@@ -17,6 +17,7 @@ export const fetcher = async <T>(
 
   if (!res.ok) {
     const error = await res.json();
+    if (res.status === 401) window.location.href = "/";
     throw new Error(error.message || "API 요청 실패");
   }
 

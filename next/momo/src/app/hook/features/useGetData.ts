@@ -4,7 +4,7 @@ import { queryKeys } from "./queryKey";
 
 export default function useGetData() {
   return useQuery({
-    queryKey: queryKeys.data.all,
+    queryKey: queryKeys.data.lists(),
     queryFn: GetData,
   });
 }

@@ -17,17 +17,6 @@ export default function CreateDataPage() {
     image: null as File | null,
   });
 
-  //   const handleSubmit = () => {
-  //     mutate({
-  //       name: form.name,
-  //       location: form.location,
-  //       type: form.type,
-  //       dateTime: form.dateTime,
-  //       registrationEnd: form.registrationEnd,
-  //       capacity: form.capacity,
-  //       image: form.image,
-  //     });
-  //   };
   const handleSubmit = async () => {
     const formData = new FormData();
 
@@ -43,7 +32,7 @@ export default function CreateDataPage() {
     }
     try {
       await mutateAsync(formData);
-      router.push("/"); // ✅ 순서 보장
+      router.push("/");
     } catch (error) {
       console.error(error);
     }
@@ -116,7 +105,6 @@ export default function CreateDataPage() {
           <p>
             <input
               type="file"
-              //   value={form.image}
               onChange={(e) =>
                 setForm({ ...form, image: e.target.files?.[0] || null })
               }

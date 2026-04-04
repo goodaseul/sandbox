@@ -19,7 +19,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="px-10 py-5">
       <section className="min-h-screen">
         <main className="">
           <h1>나눠서 적용해보기</h1>
@@ -46,6 +46,6 @@ export default function Home() {
           </p>
         </main>
       </section>
-    </>
+    </div>
   );
 }
